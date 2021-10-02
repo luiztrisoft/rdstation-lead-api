@@ -1,10 +1,10 @@
 ### rdstation-lead-api
 
 #### POST: http://localhost:8080/api/rd-station
+
 {
 	"eventType":"CONVERSION",
-	"eventFamily":"CDP",
-	
+	"eventFamily":"CDP",	
 	"payload":{				        
 		"conversionIdentifier":"Identificador",
 		"name":"Luiz A R da Silva",                
