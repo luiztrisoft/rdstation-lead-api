@@ -20,4 +20,5 @@
 		"cfUtmMedium":"Media UTM",         
 		"cfUtmCampaign":"Campanha UTM"
 	}
-   }
+	}
+   
