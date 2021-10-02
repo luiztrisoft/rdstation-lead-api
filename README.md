@@ -2,7 +2,7 @@
 
 #### POST: http://localhost:8080/api/rd-station
 
-{
+"json": {
 	"eventType":"CONVERSION",
 	"eventFamily":"CDP",	
 	"payload":{				        
