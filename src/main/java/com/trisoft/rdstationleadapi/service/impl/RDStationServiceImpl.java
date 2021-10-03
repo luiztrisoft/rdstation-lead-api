@@ -38,24 +38,34 @@ public class RDStationServiceImpl implements RDStationService {
     private RestUtil restUtil;
 
     @Override
-    public ResponseEntity<String> criarLead(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException {
+    public ResponseEntity<String> criarLeadOauth(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException {
         String token = autenticarComRefreshToken();
         String json = obterJsonLead(conversaoDto);
-        return restUtil.postLeadRDStation(criarLeadUrl, json, token);
+        return restUtil.postJsonString(criarLeadUrl, json, token);
     }
 
     @Override
-    public ResponseEntity<String> criarLeadByApiKey(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException {
+    public ResponseEntity<String> criarLeadApiKey(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException {
         String json = obterJsonLead(conversaoDto);
-        return restUtil.postLeadRDStation(apiKey, json, null);
+        return restUtil.postJsonString(apiKey, json, null);
     }
 
     private String autenticarComRefreshToken() throws JsonProcessingException, TrisoftException {
         RDAccessTokenBodyDto tokenBody = new RDAccessTokenBodyDto(clientId, clientSecret, refreshToken);
-        ResponseEntity<String> post = restUtil.post(accessTokenUrl, tokenBody, null);
+        String json = obterJsonTokenBody(tokenBody);
+        ResponseEntity<String> post = restUtil.postJsonString(accessTokenUrl, json, null);
         Gson g = new Gson();
         RDOauthTokenDto oauth = g.fromJson(post.getBody(), RDOauthTokenDto.class);
         return oauth.getAccess_token();
+    }
+
+    private String obterJsonTokenBody(RDAccessTokenBodyDto tokenBody) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(tokenBody);
+        json = json.replace("clienteId", "client_id")
+                .replace("clienteSecret", "client_secret")
+                .replace("refreshToken", "refresh_token");
+        return json;
     }
 
     private String obterJsonLead(ConversaoDto conversaoDto) throws JsonProcessingException {

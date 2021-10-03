@@ -1,6 +1,6 @@
 ### Lead com Oauth
 
-#### POST: http://localhost:8080/api/rd-station
+#### POST: http://localhost:8080/api/rd-station/oauth
 
     {
 	"eventType":"CONVERSION",
@@ -24,7 +24,7 @@
    
 ### Lead com Api Key
 
-#### POST: http://localhost:8080/api/rd-station/by-api-key
+#### POST: http://localhost:8080/api/rd-station/api-key
 
     {
 	"eventType":"CONVERSION",

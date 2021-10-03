@@ -20,17 +20,17 @@ public class RDStationResource {
     @Autowired
     private Facade facade;
 
-    @PostMapping
-    public ResponseEntity<String> criarLead(@RequestBody ConversaoDto conversaoDto) throws TrisoftException, JsonProcessingException {
+    @PostMapping("/oauth")
+    public ResponseEntity<String> criarLeadOauth(@RequestBody ConversaoDto conversaoDto) throws TrisoftException, JsonProcessingException {
         log.debug("REST request to create a new lead at rd station");
-        ResponseEntity<String> post = facade.service.rdStation.criarLead(conversaoDto);
+        ResponseEntity<String> post = facade.service.rdStation.criarLeadOauth(conversaoDto);
         return ResponseEntity.ok().body(post.getBody());
     }
 
-    @PostMapping("/by-api-key")
-    public ResponseEntity<String> criarLeadByApiKey(@RequestBody ConversaoDto conversaoDto) throws TrisoftException, JsonProcessingException {
+    @PostMapping("/api-key")
+    public ResponseEntity<String> criarLeadApiKey(@RequestBody ConversaoDto conversaoDto) throws TrisoftException, JsonProcessingException {
         log.debug("REST request to create a new lead at rd station using API KEY");
-        ResponseEntity<String> post = facade.service.rdStation.criarLeadByApiKey(conversaoDto);
+        ResponseEntity<String> post = facade.service.rdStation.criarLeadApiKey(conversaoDto);
         return ResponseEntity.ok().body(post.getBody());
     }
 }

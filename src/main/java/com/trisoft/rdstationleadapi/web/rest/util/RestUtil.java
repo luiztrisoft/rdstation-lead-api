@@ -35,27 +35,7 @@ public class RestUtil {
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    public ResponseEntity<String> post(String url, Object body, String accessToken) throws JsonProcessingException, TrisoftException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        if (accessToken != null) {
-            headers.set(AUTHORIZATION, getBearer(accessToken));
-        }
-        // Converte o dto para JSON
-        String json = objectMapper.writeValueAsString(body);
-        HttpEntity<String> entity = new HttpEntity<>(json, headers);
-        RestTemplate restTemplate = getRestTemplate();
-        restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
-        try {
-            return restTemplate.postForEntity(url, entity, String.class);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw new TrisoftException(e.getMessage());
-        }
-    }
-
-    public ResponseEntity<String> postLeadRDStation(String url, String jsonBody, String accessToken) throws JsonProcessingException, TrisoftException {
+    public ResponseEntity<String> postJsonString(String url, String jsonBody, String accessToken) throws JsonProcessingException, TrisoftException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 

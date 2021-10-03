@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 
 public interface RDStationService {
 
-    ResponseEntity<String> criarLead(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException;
+    ResponseEntity<String> criarLeadOauth(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException;
 
-    ResponseEntity<String> criarLeadByApiKey(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException;
+    ResponseEntity<String> criarLeadApiKey(ConversaoDto conversaoDto) throws JsonProcessingException, TrisoftException;
 }
 

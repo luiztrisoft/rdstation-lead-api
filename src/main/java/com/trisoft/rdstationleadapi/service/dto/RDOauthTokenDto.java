@@ -8,8 +8,8 @@ import lombok.Setter;
 public class RDOauthTokenDto {
     private String access_token;
 
-    public RDOauthTokenDto(String access_token){
-        this.access_token = access_token;
+    public RDOauthTokenDto(String accessToken){
+        this.access_token = accessToken;
     }
 
 }
